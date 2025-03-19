@@ -1,0 +1,3 @@
+gmake[2]: *** [CMakeFiles/rfid_ros_node.dir/build.make:76: CMakeFiles/rfid_ros_node] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:679: CMakeFiles/rfid_ros_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

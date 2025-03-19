@@ -1,0 +1,36 @@
+[33mCMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args`
+  (DOTNET_CORE) does not match the name of the calling package (DotNetCore).
+  This can lead to problems in calling code that expects `find_package`
+  result variables (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  /home/rfid_tag_workspace/install/dotnet_cmake_module/share/dotnet_cmake_module/cmake/Modules/dotnet/FindDotNetCore.cmake:37 (find_package_handle_standard_args)
+  /home/rfid_tag_workspace/install/dotnet_cmake_module/share/dotnet_cmake_module/cmake/Modules/FindCSBuild.cmake:20 (find_package)
+  /home/rfid_tag_workspace/install/dotnet_cmake_module/share/dotnet_cmake_module/cmake/Modules/FindDotNETExtra.cmake:15 (find_package)
+  CMakeLists.txt:23 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:[m[K In function ‘[01m[Knative_rcl_wait_set_subscription_ready[m[K’:
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:312:13:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint32_t[m[K’ {aka ‘[01m[Kint[m[K’} and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  312 |   if (index [01;35m[K>=[m[K wait_set->size_of_subscriptions)
+      |             [01;35m[K^~[m[K
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:[m[K In function ‘[01m[Knative_rcl_wait_set_client_ready[m[K’:
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:324:13:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint32_t[m[K’ {aka ‘[01m[Kint[m[K’} and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  324 |   if (index [01;35m[K>=[m[K wait_set->size_of_clients)
+      |             [01;35m[K^~[m[K
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:[m[K In function ‘[01m[Knative_rcl_wait_set_timer_ready[m[K’:
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:336:13:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint32_t[m[K’ {aka ‘[01m[Kint[m[K’} and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  336 |   if (index [01;35m[K>=[m[K wait_set->size_of_timers)
+      |             [01;35m[K^~[m[K
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:[m[K In function ‘[01m[Knative_rcl_wait_set_service_ready[m[K’:
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:348:13:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint32_t[m[K’ {aka ‘[01m[Kint[m[K’} and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  348 |   if (index [01;35m[K>=[m[K wait_set->size_of_services)
+      |             [01;35m[K^~[m[K
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:[m[K In function ‘[01m[Knative_rcl_wait_set_guard_condition_ready[m[K’:
+[01m[K/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c:360:13:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint32_t[m[K’ {aka ‘[01m[Kint[m[K’} and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  360 |   if (index [01;35m[K>=[m[K wait_set->size_of_guard_conditions)
+      |             [01;35m[K^~[m[K
+gmake[2]: *** [CMakeFiles/rfid_ros_node.dir/build.make:76: CMakeFiles/rfid_ros_node] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:679: CMakeFiles/rfid_ros_node.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake: *** [Makefile:146: all] Error 2

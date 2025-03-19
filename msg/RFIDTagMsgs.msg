@@ -1,0 +1,5 @@
+float64 freq1_phase
+float64 freq2_phase
+float64 ant1_phase
+float64 ant2_phase
+float64 ant3_phase

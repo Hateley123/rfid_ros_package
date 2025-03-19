@@ -1,0 +1,142 @@
+-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found rcl: 5.3.9 (/opt/ros/humble/share/rcl/cmake)
+-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+-- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+-- Found rcl_action: 5.3.9 (/opt/ros/humble/share/rcl_action/cmake)
+-- Found ament_cmake_export_assemblies: 0.0.0 (/home/rfid_tag_workspace/install/ament_cmake_export_assemblies/share/ament_cmake_export_assemblies/cmake)
+-- Found dotnet_cmake_module: 0.0.0 (/home/rfid_tag_workspace/install/dotnet_cmake_module/share/dotnet_cmake_module/cmake)
+-- Found .NET Core: 8.0.114
+-- Using Framework: net8.0
+-- Using Framework: net8.0
+-- Using Runtime: linux-x64
+-- Found rcldotnet: 0.0.0 (/home/rfid_tag_workspace/install/rcldotnet/share/rcldotnet/cmake)
+-- Found rcldotnet_common: 0.0.0 (/home/rfid_tag_workspace/install/rcldotnet_common/share/rcldotnet_common/cmake)
+-- Found rosidl_default_generators: 1.2.0 (/home/rfid_tag_workspace/install/rosidl_default_generators/share/rosidl_default_generators/cmake)
+-- Found std_msgs: 4.2.4 (/home/rfid_tag_workspace/install/std_msgs/share/std_msgs/cmake)
+-- Found std_srvs: 4.2.4 (/home/rfid_tag_workspace/install/std_srvs/share/std_srvs/cmake)
+-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found .NET Core: 8.0.114
+-- Using Framework: net8.0
+-- Using Framework: net8.0
+-- Using Runtime: linux-x64
+-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package
+[  2%] [34m[1mGenerating C code for ROS interfaces[0m
+[  6%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_clock.c.o[0m
+[  6%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_client.c.o[0m
+[  8%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_guard_condition.c.o[0m
+[ 10%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_timer.c.o[0m
+[ 12%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c.o[0m
+[ 14%] [34m[1mGenerating C# code for ROS interfaces[0m
+[ 17%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_node.c.o[0m
+[ 19%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_qos_profile.c.o[0m
+[ 25%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_publisher.c.o[0m
+[ 25%] [34m[1m/usr/bin/cmake;-version;/usr/bin/dotnet restore;-r;linux-x64 rfid_ros_node_dotnetcore.csproj; /usr/bin/dotnet publish;-r;linux-x64 rfid_ros_node_dotnetcore.csproj -> /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node[0m
+[ 25%] [32mBuilding C object CMakeFiles/rfid_ros_package_native.dir/home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_action_client.c.o[0m
+[ 27%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[ 27%] Built target ament_cmake_python_copy_rfid_ros_package
+cmake version 3.22.1
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+[ 29%] [32m[1mLinking C shared library librfid_ros_package_native.so[0m
+[ 29%] Built target rfid_ros_package_native
+[?1h=[ 29%] Built target rfid_ros_package__dotnet
+[ 29%] Built target rfid_ros_package__cpp
+[ 31%] [34m[1m/usr/bin/cmake;-version;/usr/bin/dotnet restore;-r;linux-x64 rfid_ros_package_assemblies_dotnetcore.csproj; /usr/bin/dotnet publish;-r;linux-x64 rfid_ros_package_assemblies_dotnetcore.csproj -> /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_package_assemblies[0m
+[ 34%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[ 40%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[ 40%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[ 40%] [32mBuilding C object CMakeFiles/rfid_ros_package__rosidl_generator_c.dir/rosidl_generator_c/rfid_ros_package/msg/detail/rfid_tag_msgs__functions.c.o[0m
+running egg_info
+creating rfid_ros_package.egg-info
+writing rfid_ros_package.egg-info/PKG-INFO
+writing dependency_links to rfid_ros_package.egg-info/dependency_links.txt
+writing top-level names to rfid_ros_package.egg-info/top_level.txt
+writing manifest file 'rfid_ros_package.egg-info/SOURCES.txt'
+reading manifest file 'rfid_ros_package.egg-info/SOURCES.txt'
+writing manifest file 'rfid_ros_package.egg-info/SOURCES.txt'
+cmake version 3.22.1
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+[ 40%] Built target ament_cmake_python_build_rfid_ros_package_egg
+[ 42%] [32m[1mLinking C shared library librfid_ros_package__rosidl_generator_c.so[0m
+[ 42%] Built target rfid_ros_package__rosidl_generator_c
+[ 44%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[ 48%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[ 48%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[?1h=[ 51%] [32mBuilding CXX object CMakeFiles/rfid_ros_package__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/rfid_ros_package/msg/rfid_tag_msgs__type_support.cpp.o[0m
+[ 53%] [32mBuilding CXX object CMakeFiles/rfid_ros_package__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/rfid_ros_package/msg/detail/dds_fastrtps/rfid_tag_msgs__type_support.cpp.o[0m
+[ 55%] [32mBuilding CXX object CMakeFiles/rfid_ros_package__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/rfid_ros_package/msg/detail/rfid_tag_msgs__type_support.cpp.o[0m
+[ 57%] [32mBuilding CXX object CMakeFiles/rfid_ros_package__rosidl_typesupport_c.dir/rosidl_typesupport_c/rfid_ros_package/msg/rfid_tag_msgs__type_support.cpp.o[0m
+[ 59%] [32mBuilding CXX object CMakeFiles/rfid_ros_package__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/rfid_ros_package/msg/detail/rfid_tag_msgs__type_support_c.cpp.o[0m
+[ 61%] [32mBuilding C object CMakeFiles/rfid_ros_package__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/rfid_ros_package/msg/detail/rfid_tag_msgs__type_support.c.o[0m
+[ 63%] [32m[1mLinking CXX shared library librfid_ros_package__rosidl_typesupport_c.so[0m
+[ 65%] [32m[1mLinking C shared library librfid_ros_package__rosidl_typesupport_introspection_c.so[0m
+  Determining projects to restore...
+[ 65%] Built target rfid_ros_package__rosidl_typesupport_c
+[ 65%] Built target rfid_ros_package__rosidl_typesupport_introspection_c
+[ 68%] [32mBuilding C object CMakeFiles/rfid_ros_package__dotnetext.dir/rosidl_generator_dotnet/rfid_ros_package/msg/rfid_tag_msgs.c.o[0m
+[ 70%] [32m[1mLinking CXX shared library librfid_ros_package__rosidl_typesupport_cpp.so[0m
+[ 72%] [32m[1mLinking C shared library rosidl_generator_dotnet/rfid_ros_package/librfid_ros_package__dotnetext_native.so[0m
+[ 72%] Built target rfid_ros_package__rosidl_typesupport_cpp
+[ 74%] Built target rfid_ros_package__dotnetext
+[ 76%] [32m[1mLinking CXX shared library librfid_ros_package__rosidl_typesupport_fastrtps_cpp.so[0m
+[ 78%] [32m[1mLinking CXX shared library librfid_ros_package__rosidl_typesupport_introspection_cpp.so[0m
+[ 80%] [32m[1mLinking CXX shared library librfid_ros_package__rosidl_typesupport_fastrtps_c.so[0m
+[ 80%] Built target rfid_ros_package__rosidl_typesupport_fastrtps_cpp
+[ 80%] Built target rfid_ros_package__rosidl_typesupport_introspection_cpp
+  Determining projects to restore...
+[ 80%] Built target rfid_ros_package__rosidl_typesupport_fastrtps_c
+[ 80%] Built target rfid_ros_package
+[ 82%] [34m[1mGenerating Python code for ROS interfaces[0m
+[ 82%] Built target rfid_ros_package__py
+[ 85%] [32mBuilding C object CMakeFiles/rfid_ros_package__rosidl_generator_py.dir/rosidl_generator_py/rfid_ros_package/msg/_rfid_tag_msgs_s.c.o[0m
+[ 87%] [32m[1mLinking C shared library rosidl_generator_py/rfid_ros_package/librfid_ros_package__rosidl_generator_py.so[0m
+[ 87%] Built target rfid_ros_package__rosidl_generator_py
+[ 89%] [32mBuilding C object CMakeFiles/rfid_ros_package__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/rfid_ros_package/_rfid_ros_package_s.ep.rosidl_typesupport_c.c.o[0m
+[ 91%] [32mBuilding C object CMakeFiles/rfid_ros_package__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/rfid_ros_package/_rfid_ros_package_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[ 93%] [32mBuilding C object CMakeFiles/rfid_ros_package__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/rfid_ros_package/_rfid_ros_package_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[ 95%] [32m[1mLinking C shared library rosidl_generator_py/rfid_ros_package/rfid_ros_package_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[ 97%] [32m[1mLinking C shared library rosidl_generator_py/rfid_ros_package/rfid_ros_package_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[100%] [32m[1mLinking C shared library rosidl_generator_py/rfid_ros_package/rfid_ros_package_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[100%] Built target rfid_ros_package__rosidl_typesupport_introspection_c__pyext
+[100%] Built target rfid_ros_package__rosidl_typesupport_c__pyext
+[100%] Built target rfid_ros_package__rosidl_typesupport_fastrtps_c__pyext
+  Restored /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj (in 804 ms).
+  Restored /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_package_assemblies/rfid_ros_package_assemblies_dotnetcore.csproj (in 667 ms).
+[?1h=[?1h=MSBuild version 17.8.19+c3ade832a for .NET
+MSBuild version 17.8.19+c3ade832a for .NET
+  Determining projects to restore...
+  Determining projects to restore...
+  Restored /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_package_assemblies/rfid_ros_package_assemblies_dotnetcore.csproj (in 100 ms).
+  Restored /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj (in 130 ms).
+[39;49m[33m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(14,7): warning CS0105: The using directive for 'System.Text' appeared previously in this namespace [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(22,7): error CS0246: The type or namespace name 'Impinj' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(24,7): error CS0246: The type or namespace name 'MathNet' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(25,7): error CS0246: The type or namespace name 'MathNet' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(26,7): error CS0246: The type or namespace name 'ROS2' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(27,7): error CS0246: The type or namespace name 'rfid_ros_package_msgs' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(59,13): error CS1520: Method must have a return type [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(31,12): error CS0246: The type or namespace name 'ImpinjReader' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(45,22): error CS0246: The type or namespace name 'Node' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(46,22): error CS0246: The type or namespace name 'Publisher<>' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(46,32): error CS0246: The type or namespace name 'RFIDTagMsgs' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(48,22): error CS0246: The type or namespace name 'RFIDTagMsgs' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(53,28): error CS0246: The type or namespace name 'Tag' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m[39;49m[31m/home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/Program.cs(54,28): error CS0246: The type or namespace name 'Tag' could not be found (are you missing a using directive or an assembly reference?) [/home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/rfid_ros_node/rfid_ros_node_dotnetcore.csproj]
+[39;49m  rfid_ros_package_assemblies_dotnetcore -> /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/net8.0/linux-x64/rfid_ros_package_assemblies.dll
+  rfid_ros_package_assemblies_dotnetcore -> /home/rfid_tag_workspace/src/rfid_ros_package/build/rfid_ros_package/net8.0/linux-x64/publish/
+[100%] Built target rfid_ros_package_assemblies
