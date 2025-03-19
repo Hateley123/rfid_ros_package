@@ -78,10 +78,10 @@ add_dotnet_executable(rfid_ros_node
 ament_export_assemblies_dll("lib/${PROJECT_NAME}/dotnet/${PROJECT_NAME}_assemblies.dll")
 
 # Install other files
-install(
-  DIRECTORY include/
-  DESTINATION include
-)
+#install(
+#  DIRECTORY include/
+#  DESTINATION include
+#)
 
 if(NOT WIN32)
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
