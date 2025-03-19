@@ -59,4 +59,4 @@ ros2 run rfid_ros_package rfid_ros_node
 ```
 
 # Topic Layout 
-C# has an issue importing custom made topics into the .cs file. Therefore a standard msg topic format had to be used in order to pass the information from the rfid reader to ros. In this system, the data that is being transferred is being used for Phase difference of arrival calculations and Angle of arrival calculations. Therefore, the phase values from the centeral antenna at two different frequencies are stored, and the phase values from each of the antennas themselves is stored. 
+C# has an issue importing custom made topics into the .cs file. Therefore a standard msg topic format had to be used in order to pass the information from the rfid reader to ros. In this system, the data that is being transferred is being used for Phase difference of arrival calculations and Angle of arrival calculations. Therefore, the phase values from the centeral antenna at two different frequencies are stored, and the phase values from each of the antennas themselves is stored. The topic is organized as follows `[frequency_1_phase,frequency_2_phase,antenna_1_phase,antenna_2_phase,antenna_3_phase]`
