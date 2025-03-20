@@ -65,6 +65,7 @@ set(_assemblies_dep_dlls
   ${DLL_DIR}/LLRP.Impinj.dll
   ${DLL_DIR}/MathNet.Numerics.dll
   ${DLL_DIR}/Renci.SshNet.dll
+  ${DLL_DIR}/EPPlus.dll
 )
 
 # Add .NET executable
