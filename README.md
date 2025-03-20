@@ -50,6 +50,7 @@ You cannot use a basic `colcon build` for this topic otherwise the ros node will
 ```
 cd /path/to/workspace/
 colcon build --symlink-install
+source /path/to/workspace/install/setup.bash
 ```
 
 # Launching Instructions
