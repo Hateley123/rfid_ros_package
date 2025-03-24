@@ -51,7 +51,35 @@ namespace ConsoleApplication
         static bool data_written = false;
         static bool data_being_written = false;
         // string of valid tags that are going to be deployed in the system
-        static string[] valid_tag_ids = {"2022 0117 1212 1A06 1A10 0074", "2022 0704 1597 9A02 1A10 00C9"};
+        static string[] valid_tag_ids = {"2022 0117 1212 1A06 1A10 0074", 
+                                         "2022 0704 1597 9A02 1A10 00C9",
+                                         "2021 1019 1212 1A06 1030 0033",
+                                         "2021 1019 1212 1A06 1030 004B",
+                                         "2021 1019 1212 1A06 1030 0049",
+                                         "2021 1019 1212 1A06 1030 004F",
+                                         "2021 1019 1212 1A06 1030 0046",
+                                         "2021 1019 1212 1A06 1030 0034",
+                                         "2021 1019 1212 1A06 1030 0048",
+                                         "2021 1019 1212 1A06 1030 004C",
+                                         "2021 1019 1212 1A06 1030 0042",
+                                         "2021 1019 1212 1A06 1030 0044",
+                                         "2021 1019 1212 1A06 1030 003C",
+                                         "2021 1019 1212 1A06 1030 003E",
+                                         "2021 1019 1212 1A06 1030 004E",
+                                         "2021 1019 1212 1A06 1030 0045",
+                                         "2021 1019 1212 1A06 1030 003F",
+                                         "2021 1019 1212 1A06 1030 003D",
+                                         "2021 1019 1212 1A06 1030 003A",
+                                         "2021 1019 1212 1A06 1030 003B",
+                                         "2021 1019 1212 1A06 1030 0043",
+                                         "2021 1019 1212 1A06 1030 004D",
+                                         "2021 1019 1212 1A06 1030 0047",
+                                         "2021 1019 1212 1A06 1030 0041",
+                                         "2021 1019 1212 1A06 1030 0032",
+                                         "2021 1019 1212 1A06 1030 0050",
+                                         "2021 1019 1212 1A06 1030 0040",
+                                         "2021 1019 1212 1A06 1030 0038",
+                                         "2021 1019 1212 1A06 1030 0039"};
         static bool tag_report_processed = true;
 
         // creates the ros node
@@ -62,7 +90,7 @@ namespace ConsoleApplication
         public static List<Publisher<std_msgs.msg.Float64MultiArray>> publisher_series = new List<Publisher<std_msgs.msg.Float64MultiArray>>();
         // number of tags that are deployed in the environment
         static int number_of_tags = valid_tag_ids.Length;
-        static int number_of_msgs_in_topic = 3;
+        static int number_of_msgs_in_topic = 5;
         // matrix to hold the information that will need to be published. once all the values have been set, the system will will send a command to
         // fill in the data for that tag topic and publish it. Values are initialized to 0 by default
         static double[,] tag_information_storage = new double[number_of_msgs_in_topic,number_of_tags];
@@ -342,7 +370,7 @@ namespace ConsoleApplication
                                 Console.WriteLine(tag.ChannelInMhz);
                                 Console.WriteLine(tag.PhaseAngleInRadians);
                                 Console.WriteLine(tag.AntennaPortNumber);
-                                if(tag.AntennaPortNumber == 1)
+                                if(tag.AntennaPortNumber == 2)
                                 {
                                     if(tag.ChannelInMhz == 902.75)
                                     {
