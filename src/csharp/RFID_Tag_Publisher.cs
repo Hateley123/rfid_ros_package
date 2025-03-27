@@ -88,6 +88,7 @@ namespace ConsoleApplication
         // creates the publisher array        
         // creates a list of publishers that can be used to represent the number of deployed tags
         public static List<Publisher<std_msgs.msg.Float64MultiArray>> publisher_series = new List<Publisher<std_msgs.msg.Float64MultiArray>>();
+        public static Publisher<std_msgs.msg.Bool> determine_env = new Publisher<std_msgs.msg.Bool>();
         // number of tags that are deployed in the environment
         static int number_of_tags = valid_tag_ids.Length;
         static int number_of_msgs_in_topic = 5;
@@ -99,6 +100,7 @@ namespace ConsoleApplication
         static bool[] tag_publish = new bool[number_of_tags]; 
         // creates a message array of floats
         public static std_msgs.msg.Float64MultiArray msg = new();
+        public static std_msgs.msg.Bool env_id_msg = new();
 
         static class VariableDeclarations
         {
@@ -123,16 +125,12 @@ namespace ConsoleApplication
                 publisher_series.Add(node.CreatePublisher<std_msgs.msg.Float64MultiArray>(topicName));
 
             }
-             
+
+            determine_env =  node.CreatePublisher<std_msgs.msg.Bool>(topicName);
             
         }
 
-        // creates the ros message to be published
-
-        private void PublishTag(TimeSpan elapsed)
-        {
-            
-        }
+    
 
         // keeps node active to confinuously obtain data
         private void Spin() => RCLdotnet.Spin(node);
@@ -214,11 +212,14 @@ namespace ConsoleApplication
                             if(!data_being_written)
                             {
                                 data_being_written = true;
-                               // Write_Data_For_Env_ID();
+                                Write_Data_For_Env_ID();
                             }   
                         }
                         else
                         {
+                            env_id_msg.Data = new Bool;
+                            determine_env.Publish(env_id_msg);
+                            
                             // creates the report and starts filling out the tag information into the matrix
                             if(tag_report_processed)
                             {
@@ -257,24 +258,21 @@ namespace ConsoleApplication
         {
             data_being_written = true;
             Console.WriteLine("writing env data");
-            int row = 2;
-            OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             try
             {
-                ExcelPackage package = new ExcelPackage(new FileInfo(tag_liklihood_storage));
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                foreach (Tag tag in VariableDeclarations.stored_tags)
+                string_file_path = "detected_data.txt";
+                using (StreamWriter writer = new StreamWriter(filePath))
                 {
-                    
-                    worksheet.Cells[row, 1].Value = tag.Epc;
-                    worksheet.Cells[row, 2].Value = tag.PhaseAngleInRadians;
-                    worksheet.Cells[row, 3].Value = tag.ChannelInMhz;
-                    
-                        
-                    row++;
+                    foreach (Tag tag in VariableDeclarations.stored_tags)
+                    {
+                        string id = tag.Epc.ToString();
+                        string phase = tag.PhaseAngleInRadians.ToString();
+                        string freq = tag.ChannelInMhz.ToString();
+                        writer.WriteLine($"{id}\t{phase}\t{channel}");  
+                    }
+                    // Write header
                 }
-                worksheet.Cells[2,4].Value = 1;
-                package.Save();
+                
                 data_written = true;
             }
             catch(Exception ex)
