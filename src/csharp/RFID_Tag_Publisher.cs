@@ -126,7 +126,7 @@ namespace ConsoleApplication
 
             }
 
-            determine_env =  node.CreatePublisher<std_msgs.msg.Bool>(topicName);
+            determine_env =  node.CreatePublisher<std_msgs.msg.Bool>("env_check");
             
         }
 
