@@ -7,8 +7,9 @@ This system relies upon ROS2 Humble (https://docs.ros.org/en/humble/Installation
 # Installation Instructions
 The following instructions are just for installing the package. You cannot build the package until you follow the modification instructions. The files in this package were uploaded in path locations that are specific to my system. So the paths will need to be modified. Make sure it is installed in the same workspace the ros2_dotnet package or the system will not work.
 ```
-cd /path/to/workspace/src/
+mkdir rfid_ws/src
 source /opt/ros/humble/setup.bash
+cd rfid_ws/src
 git clone https://github.com/Hateley123/rfid_ros_package.git
 ```
 
