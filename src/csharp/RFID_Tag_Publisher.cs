@@ -51,35 +51,39 @@ namespace ConsoleApplication
         static bool data_written = false;
         static bool data_being_written = false;
         // string of valid tags that are going to be deployed in the system
-        static string[] valid_tag_ids = {"2022 0117 1212 1A06 1A10 0074", 
-                                         "2022 0704 1597 9A02 1A10 00C9",
-                                         "2021 1019 1212 1A06 1030 0033",
-                                         "2021 1019 1212 1A06 1030 004B",
-                                         "2021 1019 1212 1A06 1030 0049",
-                                         "2021 1019 1212 1A06 1030 004F",
-                                         "2021 1019 1212 1A06 1030 0046",
-                                         "2021 1019 1212 1A06 1030 0034",
-                                         "2021 1019 1212 1A06 1030 0048",
-                                         "2021 1019 1212 1A06 1030 004C",
-                                         "2021 1019 1212 1A06 1030 0042",
-                                         "2021 1019 1212 1A06 1030 0044",
-                                         "2021 1019 1212 1A06 1030 003C",
-                                         "2021 1019 1212 1A06 1030 003E",
-                                         "2021 1019 1212 1A06 1030 004E",
-                                         "2021 1019 1212 1A06 1030 0045",
-                                         "2021 1019 1212 1A06 1030 003F",
-                                         "2021 1019 1212 1A06 1030 003D",
-                                         "2021 1019 1212 1A06 1030 003A",
-                                         "2021 1019 1212 1A06 1030 003B",
-                                         "2021 1019 1212 1A06 1030 0043",
-                                         "2021 1019 1212 1A06 1030 004D",
-                                         "2021 1019 1212 1A06 1030 0047",
-                                         "2021 1019 1212 1A06 1030 0041",
-                                         "2021 1019 1212 1A06 1030 0032",
-                                         "2021 1019 1212 1A06 1030 0050",
-                                         "2021 1019 1212 1A06 1030 0040",
-                                         "2021 1019 1212 1A06 1030 0038",
-                                         "2021 1019 1212 1A06 1030 0039"};
+        // static string[] valid_tag_ids = {"2022 0117 1212 1A06 1A10 0074", 
+        //                                  "2022 0704 1597 9A02 1A10 00C9",
+        //                                  "2021 1019 1212 1A06 1030 0033",
+        //                                  "2021 1019 1212 1A06 1030 004B",
+        //                                  "2021 1019 1212 1A06 1030 0049",
+        //                                  "2021 1019 1212 1A06 1030 004F",
+        //                                  "2021 1019 1212 1A06 1030 0046",
+        //                                  "2021 1019 1212 1A06 1030 0034",
+        //                                  "2021 1019 1212 1A06 1030 0048",
+        //                                  "2021 1019 1212 1A06 1030 004C",
+        //                                  "2021 1019 1212 1A06 1030 0042",
+        //                                  "2021 1019 1212 1A06 1030 0044",
+        //                                  "2021 1019 1212 1A06 1030 003C",
+        //                                  "2021 1019 1212 1A06 1030 003E",
+        //                                  "2021 1019 1212 1A06 1030 004E",
+        //                                  "2021 1019 1212 1A06 1030 0045",
+        //                                  "2021 1019 1212 1A06 1030 003F",
+        //                                  "2021 1019 1212 1A06 1030 003D",
+        //                                  "2021 1019 1212 1A06 1030 003A",
+        //                                  "2021 1019 1212 1A06 1030 003B",
+        //                                  "2021 1019 1212 1A06 1030 0043",
+        //                                  "2021 1019 1212 1A06 1030 004D",
+        //                                  "2021 1019 1212 1A06 1030 0047",
+        //                                  "2021 1019 1212 1A06 1030 0041",
+        //                                  "2021 1019 1212 1A06 1030 0032",
+        //                                  "2021 1019 1212 1A06 1030 0050",
+        //                                  "2021 1019 1212 1A06 1030 0040",
+        //                                  "2021 1019 1212 1A06 1030 0038",
+        //                                  "2021 1019 1212 1A06 1030 0039"};
+
+        static string[] valid_tag_ids = {"2021 1019 1212 1A06 1030 0043","2022 0117 1212 1A06 1A10 0074"};
+
+
         static bool tag_report_processed = true;
 
         // creates the ros node
@@ -88,7 +92,7 @@ namespace ConsoleApplication
         // creates the publisher array        
         // creates a list of publishers that can be used to represent the number of deployed tags
         public static List<Publisher<std_msgs.msg.Float64MultiArray>> publisher_series = new List<Publisher<std_msgs.msg.Float64MultiArray>>();
-        public static Publisher<std_msgs.msg.Bool> determine_env = new Publisher<std_msgs.msg.Bool>();
+        public static Publisher<std_msgs.msg.Bool> determine_env;
         // number of tags that are deployed in the environment
         static int number_of_tags = valid_tag_ids.Length;
         static int number_of_msgs_in_topic = 5;
@@ -191,7 +195,7 @@ namespace ConsoleApplication
                 while(loop)
                 {   
                     
-                    if(stop_watch.Elapsed.TotalMinutes<=0.5)
+                    if(stop_watch.Elapsed.TotalMinutes<=0.05)
                     {
                         //Console.WriteLine("In function 1");  
                         Console.WriteLine(stop_watch.Elapsed.TotalMinutes);
@@ -217,7 +221,7 @@ namespace ConsoleApplication
                         }
                         else
                         {
-                            env_id_msg.Data = new Bool;
+                            env_id_msg.Data = data_written;
                             determine_env.Publish(env_id_msg);
                             
                             // creates the report and starts filling out the tag information into the matrix
@@ -260,15 +264,15 @@ namespace ConsoleApplication
             Console.WriteLine("writing env data");
             try
             {
-                string_file_path = "detected_data.txt";
-                using (StreamWriter writer = new StreamWriter(filePath))
+                string string_file_path = "/root/bunker_ws/rfid_workspace/src/rfid_ros_package/src/csharp/detected_data.txt";
+                using (StreamWriter writer = new StreamWriter(string_file_path))
                 {
                     foreach (Tag tag in VariableDeclarations.stored_tags)
                     {
                         string id = tag.Epc.ToString();
                         string phase = tag.PhaseAngleInRadians.ToString();
                         string freq = tag.ChannelInMhz.ToString();
-                        writer.WriteLine($"{id}\t{phase}\t{channel}");  
+                        writer.WriteLine($"{id}\t{phase}\t{freq}");  
                     }
                     // Write header
                 }
@@ -399,7 +403,7 @@ namespace ConsoleApplication
 
                             // updates the antenna information. due to tag read rate, it should be reading 100-1000 tags per second so we just get this 
                             // information for the topic before the person even really had time to move (hopefully)
-                            if(tag.ChannelInMhz == 902.75)
+                            if(tag.ChannelInMhz == 903.75)
                             {
                                 if(tag_information_storage[tag.AntennaPortNumber+1,tag_location] == 0)
                                 {
@@ -428,8 +432,8 @@ namespace ConsoleApplication
                 double f1_phase;
                 double f2_phase;
                 double a1_phase;
-                //double a2_phase;
-                //double a3_phase;
+                double a2_phase;
+                double a3_phase;
                
                 for(int a = 0; a < number_of_tags; a++)
                 {
@@ -437,6 +441,8 @@ namespace ConsoleApplication
                     Console.WriteLine(tag_information_storage[0,a]);
                     Console.WriteLine(tag_information_storage[1,a]);
                     Console.WriteLine(tag_information_storage[2,a]);
+                    Console.WriteLine(tag_information_storage[3,a]);
+                    Console.WriteLine(tag_information_storage[4,a]);
                     b = 0;
                     condition = true;
                     // checks each  value in the array. it stops either when the entire array column is checked or it hits a false value. 
@@ -449,21 +455,24 @@ namespace ConsoleApplication
 
                     if(condition)
                     {
-                        // msg.freq1_phase;
-                        // msg.freq2_phase;
-                        // msg.ant1_phase;
-                        // msg.ant2_phase;
-                        // msg.ant3_phase;
+                        //msg.freq1_phase;
+                        //msg.freq2_phase;
+                        //msg.ant1_phase;
+                        //msg.ant2_phase;
+                        //msg.ant3_phase;
                         Console.WriteLine("Publishing");
                         f1_phase = tag_information_storage[0,a];
                         f2_phase = tag_information_storage[1,a];
                         a1_phase = tag_information_storage[2,a];
+                        a2_phase = tag_information_storage[3,a];
+                        a3_phase = tag_information_storage[4,a];
                         Console.WriteLine(f1_phase);
                         Console.WriteLine(f2_phase);
                         Console.WriteLine(a1_phase);
-                        //a2_phase = tag_information_storage[a,3];
-                        //a3_phase = tag_information_storage[a,4];
-                        msg.Data = new List<double> { f1_phase, f2_phase, a1_phase,a};
+                        Console.WriteLine(a2_phase);
+                        Console.WriteLine(a3_phase);
+                        
+                        msg.Data = new List<double> { f1_phase, f2_phase, a1_phase,a2_phase,a3_phase};
 
                         publisher_series[a].Publish(msg);
 

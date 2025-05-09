@@ -44,11 +44,11 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 # Set up C# source files
 set(CS_SOURCES
-  /home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/RFID_Tag_Publisher.cs
+  /root/bunker_ws/rfid_workspace/src/rfid_ros_package/src/csharp/RFID_Tag_Publisher.cs
 )
 
 # Define DLL directory for .NET dependencies
-set(DLL_DIR /home/rfid_tag_workspace/src/rfid_ros_package/libraries)
+set(DLL_DIR /root/bunker_ws/rfid_workspace/src/rfid_ros_package/libraries)
 
 # .NET dependencies (assemblies)
 set(_assemblies_dep_dlls
@@ -70,7 +70,7 @@ set(_assemblies_dep_dlls
 
 # Add .NET executable
 add_dotnet_executable(rfid_ros_node
-  /home/rfid_tag_workspace/src/rfid_ros_package/src/csharp/RFID_Tag_Publisher.cs
+  /root/bunker_ws/rfid_workspace/src/rfid_ros_package/src/csharp/RFID_Tag_Publisher.cs
   INCLUDE_DLLS
   ${_assemblies_dep_dlls}
 )
@@ -94,15 +94,15 @@ endif()
 
 # Handle native C++ library if needed
 add_library(${PROJECT_NAME}_native SHARED
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_action_client.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_client.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_clock.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_guard_condition.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_node.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_publisher.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_timer.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_qos_profile.c
-  /home/rfid_tag_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_action_client.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_client.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_clock.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_guard_condition.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_node.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_publisher.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_timer.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet_qos_profile.c
+  /root/bunker_ws/rfid_workspace/src/ros2_dotnet/ros2_dotnet/rcldotnet/rcldotnet.c
 )
 
 ament_target_dependencies(${PROJECT_NAME}_native
