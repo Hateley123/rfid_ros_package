@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -80,6 +80,10 @@ namespace ConsoleApplication
                                          "2021 1019 1212 1A06 1030 0040",
                                          "2021 1019 1212 1A06 1030 0038",
                                          "2021 1019 1212 1A06 1030 0039"};
+
+        //static string[] valid_tag_ids = {"2021 1019 1212 1A06 1030 0043","2022 0117 1212 1A06 1A10 0074"};
+
+
         static bool tag_report_processed = true;
 
         // creates the ros node
@@ -88,17 +92,19 @@ namespace ConsoleApplication
         // creates the publisher array        
         // creates a list of publishers that can be used to represent the number of deployed tags
         public static List<Publisher<std_msgs.msg.Float64MultiArray>> publisher_series = new List<Publisher<std_msgs.msg.Float64MultiArray>>();
+        public static Publisher<std_msgs.msg.Bool> determine_env;
         // number of tags that are deployed in the environment
         static int number_of_tags = valid_tag_ids.Length;
-        static int number_of_msgs_in_topic = 5;
+        static int number_of_msgs_in_topic = 4;
         // matrix to hold the information that will need to be published. once all the values have been set, the system will will send a command to
-        // fill in the data for that tag topic and publish it. Values are initialized to 0 by default
+        // fill in the data for that tag topic and publish it. Values are initialized to 0 by default. Each columnholds all the tag information for each tag. and each column is a diff tag
         static double[,] tag_information_storage = new double[number_of_msgs_in_topic,number_of_tags];
         // these booleans will be checked and if its true then the specific tag topic will be published. The booleans are initialized to false 
         // by C# default        
         static bool[] tag_publish = new bool[number_of_tags]; 
         // creates a message array of floats
         public static std_msgs.msg.Float64MultiArray msg = new();
+        public static std_msgs.msg.Bool env_id_msg = new();
 
         static class VariableDeclarations
         {
@@ -123,16 +129,12 @@ namespace ConsoleApplication
                 publisher_series.Add(node.CreatePublisher<std_msgs.msg.Float64MultiArray>(topicName));
 
             }
-             
+
+            determine_env =  node.CreatePublisher<std_msgs.msg.Bool>("env_check");
             
         }
 
-        // creates the ros message to be published
-
-        private void PublishTag(TimeSpan elapsed)
-        {
-            
-        }
+    
 
         // keeps node active to confinuously obtain data
         private void Spin() => RCLdotnet.Spin(node);
@@ -174,7 +176,7 @@ namespace ConsoleApplication
                 // tells me the frequency the tag is being detected at
                 settings.Report.IncludeChannel = true;
                 // includes time stamp
-                settings.Report.IncludeFirstSeenTime = true;
+                settings.Report.IncludeLastSeenTime = true;
                 // Reports each time a tag is detected and the values associated with the tag
                 settings.Report.Mode = ReportMode.Individual;
                 // Applys the settings to the reader
@@ -182,68 +184,89 @@ namespace ConsoleApplication
                 // Collects tags readings and stores the data into list
                 reader.Start();
                 Console.WriteLine("Reader STarted");
+                if(!report_being_processed)
+                {
+                    reader.TagsReported += OnTagsReported;
+                }
+                
+                Console.WriteLine("Press Enter to exit");
+                Console.ReadLine();      
+                reader.Stop(); 
+                reader.Disconnect(); 
+                Console.WriteLine("Disconnected");
+                /***************************************************************************************************************************************************
+                * The code block below was used to create a stop watch to monitor and collect data from environmental identification. The models that were previously
+                collected were made for a different antenna system, so the environments need to be mapped again to do proper environmental selection. AS of right now this
+                system is only being deployed in one environment. So the below code block for environmental mapping is not necessary
+                ****************************************************************************************************************************************************/
+
+
+
                 // creates a stop watch to collect data for environmal identification. It does not need to operate the entire time so its only running for 4 minutes
-                Stopwatch stop_watch = new Stopwatch();
-                // stop watch used to turn the system off after set of time. It is being used current as a time for turning the system off.
-                Stopwatch stop_watch2 = new Stopwatch();
-                stop_watch.Start();
-                stop_watch2.Start();
-                Console.WriteLine(tag_information_storage.GetLength(0));
-                Console.WriteLine(tag_information_storage.GetLength(1));
-                while(loop)
-                {   
+                // Stopwatch stop_watch = new Stopwatch();
+                // // stop watch used to turn the system off after set of time. It is being used current as a time for turning the system off.
+                // Stopwatch stop_watch2 = new Stopwatch();
+                // stop_watch.Start();
+                // stop_watch2.Start();
+                // Console.WriteLine(tag_information_storage.GetLength(0));
+                // Console.WriteLine(tag_information_storage.GetLength(1));
+                // while(loop)
+                // {   
                     
-                    if(stop_watch.Elapsed.TotalMinutes<=0.5)
-                    {
-                        //Console.WriteLine("In function 1");  
-                        Console.WriteLine(stop_watch.Elapsed.TotalMinutes);
-                            // collects the tag data to be used for environmental identification
-                        reader.TagsReported += Data_Collection_For_Env_ID;
-                    }
-                    else
-                    {   // switches to ordinary tag filtering for localization 
-                        // checks to see if the data has been writen to an excel file yet
-                        // will not start looking for tags until the data for environmental identification has been collected
+                //     if(stop_watch.Elapsed.TotalMinutes<=0.01)
+                //     {
+                //         //Console.WriteLine("In function 1");  
+                //         Console.WriteLine(stop_watch.Elapsed.TotalMinutes);
+                //             // collects the tag data to be used for environmental identification
+                //         reader.TagsReported += Data_Collection_For_Env_ID;
+                //     }
+                //     else
+                //     {   // switches to ordinary tag filtering for localization 
+                //         // checks to see if the data has been writen to an excel file yet
+                //         // will not start looking for tags until the data for environmental identification has been collected
 
-                        if(!data_written)
-                        {
-                            Console.WriteLine("Writing Data to excel file");
-                            data_written = true;
-                            // checks to see if the data writing process has started
-                            // it being true prevents the function from being called multiple times
-                            if(!data_being_written)
-                            {
-                                data_being_written = true;
-                               // Write_Data_For_Env_ID();
-                            }   
-                        }
-                        else
-                        {
-                            // creates the report and starts filling out the tag information into the matrix
-                            if(tag_report_processed)
-                            {
-                                tag_report_processed = false;
-                                reader.TagsReported += OnTagsReported;
+                //         if(!data_written)
+                //         {
+                //             Console.WriteLine("Writing Data to excel file");
+                //             data_written = true;
+                //             // checks to see if the data writing process has started
+                //             // it being true prevents the function from being called multiple times
+                //             if(!data_being_written)
+                //             {
+                //                 data_being_written = true;
+                //                 Write_Data_For_Env_ID();
+                //             }   
+                //         }ChannelInMhz
+                //         else
+                //         {
+                //             env_id_msg.Data = data_written;
+                //             determine_env.Publish(env_id_msg);
+                            
+                //             // creates the report and starts filling out the tag information into the matrix
+                //             if(tag_report_processed)
+                //             {
+                //                 tag_report_processed = false;
+                //                 reader.TagsReported += OnTagsReported;
 
-                            }
+                //             }
                             
                             
-                        }
+                //         }
                         
-                    }
+                //     }
 
                     
                     
-                    if(stop_watch.Elapsed.TotalMinutes>10)
-                    {
-                        reader.Stop(); 
-                        reader.Disconnect(); 
-                        Console.WriteLine("Disconnected");
-                        loop = false;
-                    }    
+                //     if(stop_watch.Elapsed.TotalMinutes>10)
+                //     {
+                //         reader.Stop(); 
+                //         reader.Disconnect(); 
+                //         Console.WriteLine("Disconnected");
+                //         loop = false;
+                //     }    
                     
-                    System.Threading.Thread.Sleep(500);
-                }  
+                //     System.Threading.Thread.Sleep(500);
+                // }  
 
             }
 
@@ -257,24 +280,21 @@ namespace ConsoleApplication
         {
             data_being_written = true;
             Console.WriteLine("writing env data");
-            int row = 2;
-            OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             try
             {
-                ExcelPackage package = new ExcelPackage(new FileInfo(tag_liklihood_storage));
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                foreach (Tag tag in VariableDeclarations.stored_tags)
+                string string_file_path = "/root/bunker_ws/rfid_workspace/src/rfid_ros_package/src/csharp/detected_data.txt";
+                using (StreamWriter writer = new StreamWriter(string_file_path))
                 {
-                    
-                    worksheet.Cells[row, 1].Value = tag.Epc;
-                    worksheet.Cells[row, 2].Value = tag.PhaseAngleInRadians;
-                    worksheet.Cells[row, 3].Value = tag.ChannelInMhz;
-                    
-                        
-                    row++;
+                    foreach (Tag tag in VariableDeclarations.stored_tags)
+                    {
+                        string id = tag.Epc.ToString();
+                        string phase = tag.PhaseAngleInRadians.ToString();
+                        string freq = tag.ChannelInMhz.ToString();
+                        writer.WriteLine($"{id}\t{phase}\t{freq}");  
+                    }
+                    // Write header
                 }
-                worksheet.Cells[2,4].Value = 1;
-                package.Save();
+                
                 data_written = true;
             }
             catch(Exception ex)
@@ -356,64 +376,31 @@ namespace ConsoleApplication
                         if(tag_location != -1)
                         {                      
                             
-                            // ensures only data that is collected is in the frequency the system
-                            // is calibrated for
-                            if((tag.ChannelInMhz == 902.75) || (tag.ChannelInMhz == 903.75))
+                            Console.WriteLine(tag_string);
+                            Console.WriteLine(tag_location);
+                            Console.WriteLine(tag.ChannelInMhz);
+                            Console.WriteLine(tag.PhaseAngleInRadians);
+                            Console.WriteLine(tag.AntennaPortNumber);
+                            // if no tag information has been stored then store the current phase
+                            if(tag_information_storage[0,tag_location] == 0)
                             {
-                                // outputs to console as a type of debugging
-                                
-                                // deals with filling out the elements on the first two phases
-                                // only the centeral antenna will provide phases to be used for ranging. 
-                                // Since all antennas are so close together. We cannot do triangulation
-                                Console.WriteLine(tag_string);
-                                Console.WriteLine(tag_location);
-                                Console.WriteLine(tag.ChannelInMhz);
-                                Console.WriteLine(tag.PhaseAngleInRadians);
-                                Console.WriteLine(tag.AntennaPortNumber);
-                                if(tag.AntennaPortNumber == 2)
-                                {
-                                    if(tag.ChannelInMhz == 902.75)
-                                    {
-                                        if(tag_information_storage[0,tag_location] == 0)
-                                        {
-                                            tag_information_storage[0,tag_location] = tag.PhaseAngleInRadians;
-                                        }
-                                        else
-                                        {
-                                            tag_information_storage[0,tag_location] = Phase_Calculation(tag_information_storage[0,tag_location],tag.PhaseAngleInRadians);
-                                        }
-                                    }
-                                    else if(tag.ChannelInMhz == 903.75)
-                                    {
-                                        if(tag_information_storage[1,tag_location] == 0)
-                                        {
-                                            tag_information_storage[1,tag_location] = tag.PhaseAngleInRadians;
-                                        }
-                                        else
-                                        {
-                                            tag_information_storage[1,tag_location] = Phase_Calculation(tag_information_storage[1,tag_location],tag.PhaseAngleInRadians);
-                                        }
-                                    }                                    
-                                    
-                                }
-                            
+                                tag_information_storage[0,tag_location] = tag.PhaseAngleInRadians;
+                            }
+                            else
+                            {
+                                tag_information_storage[0,tag_location] = Phase_Calculation(tag_information_storage[0,tag_location],tag.PhaseAngleInRadians);
                             }
 
-                            // updates the antenna information. due to tag read rate, it should be reading 100-1000 tags per second so we just get this 
-                            // information for the topic before the person even really had time to move (hopefully)
-                            if(tag.ChannelInMhz == 902.75)
-                            {
-                                if(tag_information_storage[tag.AntennaPortNumber+1,tag_location] == 0)
-                                {
-                                    tag_information_storage[tag.AntennaPortNumber+1,tag_location] = tag.PhaseAngleInRadians;
-                                }
-                                else
-                                {
-                                    tag_information_storage[tag.AntennaPortNumber+1,tag_location] = Phase_Calculation(tag_information_storage[tag.AntennaPortNumber+1,tag_location],tag.PhaseAngleInRadians);
-                                }        
-                            }  
+                            tag_information_storage[1,tag_location]  = tag.ChannelInMhz;
+                            tag_information_storage[2,tag_location]  = tag.AntennaPortNumber;
+                            tag_information_storage[3,tag_location]  = (tag.LastSeenTime.LocalDateTime - DateTime.UnixEpoch).TotalSeconds;
+                            msg.Data = new List<double> { tag_information_storage[0,tag_location], 
+                                                          tag_information_storage[1,tag_location], 
+                                                          tag_information_storage[2,tag_location],
+                                                          tag_information_storage[3,tag_location]};
 
-
+                            publisher_series[tag_location].Publish(msg);
+                            
                         }              
                         
                     }
@@ -425,55 +412,7 @@ namespace ConsoleApplication
                     Console.WriteLine(ex.Message);
                 }      
 
-                bool condition;
-                int b;
-                double f1_phase;
-                double f2_phase;
-                double a1_phase;
-                //double a2_phase;
-                //double a3_phase;
-               
-                for(int a = 0; a < number_of_tags; a++)
-                {
-                    Console.WriteLine("Checking Topic");
-                    Console.WriteLine(tag_information_storage[0,a]);
-                    Console.WriteLine(tag_information_storage[1,a]);
-                    Console.WriteLine(tag_information_storage[2,a]);
-                    b = 0;
-                    condition = true;
-                    // checks each  value in the array. it stops either when the entire array column is checked or it hits a false value. 
-                
-                    while(condition && b < number_of_msgs_in_topic)
-                    {
-                        condition = tag_information_storage[b,a] != 0;
-                        b++;
-                    }
-
-                    if(condition)
-                    {
-                        // msg.freq1_phase;
-                        // msg.freq2_phase;
-                        // msg.ant1_phase;
-                        // msg.ant2_phase;
-                        // msg.ant3_phase;
-                        Console.WriteLine("Publishing");
-                        f1_phase = tag_information_storage[0,a];
-                        f2_phase = tag_information_storage[1,a];
-                        a1_phase = tag_information_storage[2,a];
-                        Console.WriteLine(f1_phase);
-                        Console.WriteLine(f2_phase);
-                        Console.WriteLine(a1_phase);
-                        //a2_phase = tag_information_storage[a,3];
-                        //a3_phase = tag_information_storage[a,4];
-                        msg.Data = new List<double> { f1_phase, f2_phase, a1_phase,a};
-
-                        publisher_series[a].Publish(msg);
-
-                    } 
-                    
-                    
-                }
-                tag_report_processed = true;
+                report_being_processed = false;
 
 
             }
@@ -483,8 +422,8 @@ namespace ConsoleApplication
 
             static double Phase_Calculation(double previous_phase,double incoming_phase)
             {
-                double new_phase = 0;
-
+                
+                double new_phase = incoming_phase;
                 if(Math.Abs(Math.PI + incoming_phase - previous_phase) <=phase_threshold)
                 {
                     new_phase = Math.Abs(incoming_phase + Math.PI);
